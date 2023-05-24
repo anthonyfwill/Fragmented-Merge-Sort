@@ -64,8 +64,8 @@ void merge2(int arr[], int arr2[], int p, int q, int r, int n, int m) {
     }*/
   std::cout << "\n\n";
   
-  // Until we reach either end of either L or M, pick larger among
-  // elements L and M and place them in the correct position at A[p..r]
+  // Until we reach either end of either L or M or Arr2, pick larger among
+  // elements L, M and Arr2, and place them in the correct position at A[p..r]
   while (i < n1 && j < n2 && v < n3) {
     int vMin = FindMin(arr2, n3, v); 
     cout << "           iMin: " << L[i] << " jMin: " << M[j] << " vMin: " << arr2[vMin] <<"\n";
@@ -90,7 +90,6 @@ void merge2(int arr[], int arr2[], int p, int q, int r, int n, int m) {
   }
 
   // When we run out of elements in either Arr2 and M, Arr2 and L, L and M 
-  // pick up the remaining elements and put in A[p..r]
   if (i == n1){
     while (v < n3 && j < n2) {
         int vMin = FindMin(arr2, n3, v); 
@@ -198,8 +197,8 @@ void merge2(int arr[], int arr2[], int p, int q, int r, int n, int m) {
 }
 
 void SparseMerge(int arr[], int p, int r){
-    float test = (r-p+1)/8.0;
-    int m = (r-p+1)/33;
+    float test = q * (r-p+1.0)/2;
+    int m = q * (r-p+1)/2;
     
     if (test < 1 && test > 0 && r-p > 0){
        m = 1;
@@ -237,10 +236,10 @@ void SparseMerge(int arr[], int p, int r){
 int main() {
   int arr[] = {3, 2, 1, 13, 10, 6, 5, 16, 3, 2, 1, 13, 10, 6, 5, 16, 9, 7, 11, 15, 4, 14, 12, 8, 9, 7, 11, 15, 4, 14, 12, 8};
   cout << "Unsorted array: \n";
-  printArray(arr, size);  
+  printArray(arr, 32);  
   SparseMerge(arr, 0, 31);
 
   cout << "\n\nSorted array: \n";
-  printArray(arr, size);
+  printArray(arr, 32);
   return 0;
 }
